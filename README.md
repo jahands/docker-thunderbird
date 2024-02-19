@@ -1,3 +1,5 @@
+Forked from https://github.com/jlesage/docker-thunderbird
+
 # Docker container for Thunderbird
 [![Release](https://img.shields.io/github/release/jlesage/docker-thunderbird.svg?logo=github&style=for-the-badge)](https://github.com/jlesage/docker-thunderbird/releases/latest)
 [![Docker Image Size](https://img.shields.io/docker/image-size/jlesage/thunderbird/latest?logo=docker&style=for-the-badge)](https://hub.docker.com/r/jlesage/thunderbird/tags)
