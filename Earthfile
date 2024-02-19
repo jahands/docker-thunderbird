@@ -11,4 +11,4 @@ docker-baseimage-gui:
 	BUILD baseimage-gui+docker
 
 docker-thunderbird:
-	BUILD baseimage+docker
+	BUILD thunderbird+docker
