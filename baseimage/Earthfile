@@ -15,4 +15,4 @@ docker:
 		--build-arg BUILDPLATFORM=linux/amd64 \
 		--build-arg IMAGE_VERSION=latest \
 		.
-	SAVE IMAGE baseimage:latest
+	SAVE IMAGE --push gitea.uuid.rocks/docker/thunderbird-base:latest
