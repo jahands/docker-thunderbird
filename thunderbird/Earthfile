@@ -22,7 +22,7 @@ docker:
 	COPY +thunderbirdversion/THUNDERBIRD_VERSION .
 	FROM DOCKERFILE \
 		--build-arg THUNDERBIRD_VERSION=$(cat THUNDERBIRD_VERSION) \
-		--build-arg BASEIMAGE=gitea.uuid.rocks/docker/thunderbird-base:latest \
+		--build-arg BASEIMAGE=gitea.uuid.rocks/docker/thunderbird-base-gui:latest \
 		--build-arg BUILDPLATFORM=linux/amd64 \
 		--build-arg IMAGE_VERSION=latest \
 		.
