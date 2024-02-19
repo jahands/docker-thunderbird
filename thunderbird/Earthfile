@@ -13,7 +13,7 @@ thunderbirdversion:
 dockercontext:
 	FROM busybox
 	WORKDIR /work
-	COPY --dir helpers rootfs src .
+	COPY --dir rootfs .
 	COPY Dockerfile .
 	SAVE ARTIFACT /work
 
