@@ -1,0 +1,30 @@
+VERSION 0.8
+PROJECT jahands/docker
+
+thunderbirdversion:
+	FROM alpine:3
+	WORKDIR /work
+	RUN apk search thunderbird --no-cache --exact \
+		| grep 'thunderbird-' | head -1 \
+		| awk -F 'thunderbird-' '{print $2}' \
+		> ./THUNDERBIRD_VERSION
+	SAVE ARTIFACT ./THUNDERBIRD_VERSION
+
+dockercontext:
+	FROM busybox
+	WORKDIR /work
+	COPY --dir helpers rootfs src .
+	COPY Dockerfile .
+	SAVE ARTIFACT /work
+
+docker:
+	FROM +dockercontext
+	COPY +thunderbirdversion/THUNDERBIRD_VERSION .
+	FROM DOCKERFILE \
+		--build-arg THUNDERBIRD_VERSION=$(cat THUNDERBIRD_VERSION) \
+		--build-arg BASEIMAGE=gitea.uuid.rocks/docker/thunderbird-base:latest \
+		--build-arg BUILDPLATFORM=linux/amd64 \
+		--build-arg IMAGE_VERSION=latest \
+		.
+	SAVE IMAGE --push gitea.uuid.rocks/docker/thunderbird:latest
+

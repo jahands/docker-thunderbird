@@ -1,0 +1,18 @@
+VERSION 0.8
+PROJECT jahands/docker
+
+dockercontext:
+	FROM busybox
+	WORKDIR /work
+	COPY --dir helpers rootfs src .
+	COPY Dockerfile .
+	SAVE ARTIFACT /work
+
+docker:
+	FROM +dockercontext
+	FROM DOCKERFILE \
+		--build-arg BASEIMAGE=gitea.uuid.rocks/docker/thunderbird-base:latest \
+		--build-arg BUILDPLATFORM=linux/amd64 \
+		--build-arg IMAGE_VERSION=latest \
+		.
+	SAVE IMAGE --push gitea.uuid.rocks/docker/thunderbird-base-gui:latest
