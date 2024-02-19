@@ -13,7 +13,7 @@ NGINX_VERSION=1.20.1
 NGINXWEBSOCKIFYMOD_VERSION=0.0.3
 
 # Define software download URLs.
-NGINX_URL=http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
+NGINX_URL=https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz
 NGINXWEBSOCKIFYMOD_URL=https://github.com/tg123/websockify-nginx-module/archive/v${NGINXWEBSOCKIFYMOD_VERSION}.tar.gz
 
 function log {
