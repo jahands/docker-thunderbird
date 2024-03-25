@@ -2,11 +2,11 @@ name: Build Docker Images
 
 on:
   push:
-    branches: ['*']
+    branches: [main]
 
 jobs:
   build:
-    runs-on: ubicloud-standard-2-arm
+    runs-on: ubicloud-standard-2
     concurrency: build-docker-images
     env:
       EARTHLY_TOKEN: ${{ secrets.EARTHLY_TOKEN }}
@@ -14,14 +14,10 @@ jobs:
       EARTHLY_SATELLITE: mini-sat
       FORCE_COLOR: 1
     steps:
-      - name: Extract Branch Name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
       - uses: earthly/actions-setup@v1.0.11
         with:
           version: v0.8.6
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: 'Docker: Base Image'
         run: earthly --ci --push +docker-baseimage
       - name: 'Docker: Base Image (GUI)'
